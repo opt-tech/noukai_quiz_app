@@ -1,0 +1,26 @@
+.panel-ranking {
+  margin-top: 10px;
+  padding-bottom: 10px;
+  background: #333;
+  color: #fff;
+}
+
+.panel-top5 {
+  margin-top: 10px;
+  padding: 20px;
+  background: #333;
+  color: #fff;
+}
+
+.one-more-thing {
+  margin-top: 40px;
+}
+
+.ranking .list-group-item {
+  background: #333;
+  color: #fff;
+}
+
+.ranking .list-group-item:first-child {
+  color: #00ff76;
+}
