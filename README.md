@@ -45,13 +45,13 @@ web socketのサーバを操作して、端末側の画面を切り替えます
 
 - フロントのコードを加筆してビルドする。
   - ログイン時の部署名もカスタマイズできます。
-  - https://github.com/opt-tech/noukai_quiz_app/blob/for-oss/client/Readme.md#動かし方
+  - https://github.com/opt-tech/noukai_quiz_app/blob/master/client/Readme.md#動かし方
 
 - 問題文を入れ替える
-  - https://github.com/opt-tech/noukai_quiz_app/blob/for-oss/client/questions.json
+  - https://github.com/opt-tech/noukai_quiz_app/blob/master/client/questions.json
 
 - サーバーを立ち上げる
-  - https://github.com/opt-tech/noukai_quiz_app/blob/for-oss/server/README.md#使い方
+  - https://github.com/opt-tech/noukai_quiz_app/blob/master/server/README.md#使い方
 
 - スマホからサーバーにアクセス
   - ログイン後、待機画面が出ます。

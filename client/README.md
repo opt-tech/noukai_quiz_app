@@ -19,7 +19,7 @@ npmタスクを動かすのに必要です。
 
 - 部署の設定を入れ替える
 
-https://github.com/opt-tech/noukai_quiz_app/blob/for-oss/client/src/noukai-app/login/LoginRoot.tsx#L17
+https://github.com/opt-tech/noukai_quiz_app/blob/master/client/src/noukai-app/login/LoginRoot.tsx#L17
 
 - （本番向けの）ビルドをする
 
