@@ -12,7 +12,7 @@ object Main {
     case _ => serverStart()
   }
 
-  def serverStart(host: String = "localhost", port: Int = 3000, path: String = "./../client/questions.json"): Unit = {
+  def serverStart(host: String = "10.8.225.44", port: Int = 3000, path: String = "./../client/questions.json"): Unit = {
     implicit val system: ActorSystem = ActorSystem("noukai-app")
     implicit val materializer: Materializer = ActorMaterializer()
     implicit val ec: ExecutionContext = system.dispatcher

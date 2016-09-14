@@ -1,3 +1,4 @@
+import "isomorphic-fetch";
 import {ActionTypes, Score, Clicker} from "./Models";
 import {IQuestion} from "../Models";
 
