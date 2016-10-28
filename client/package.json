@@ -27,7 +27,6 @@
     "ws": "1.1.1"
   },
   "dependencies": {
-    "axios": "0.14.0",
     "es6-promise": "3.3.0",
     "immutable": "3.8.1",
     "isomorphic-fetch": "2.2.1",
