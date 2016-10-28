@@ -1,5 +1,5 @@
 import * as React from "react";
-import {ConsoleState} from "../Models";
+import {ConsoleState} from "../Entities";
 import {DispatchActions} from "../DispatchActions";
 
 interface Props {

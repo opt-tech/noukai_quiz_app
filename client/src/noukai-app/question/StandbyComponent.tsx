@@ -1,5 +1,5 @@
 import * as React from "react";
-import {NoukaiState} from "../Models";
+import {NoukaiState} from "../Entities";
 import {DispatchActions} from "../DispatchActions";
 
 interface Props {

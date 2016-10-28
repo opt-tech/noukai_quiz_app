@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Range} from "immutable";
-import {ConsoleState} from "../Models";
+import {ConsoleState} from "../Entities";
 import {browserHistory} from "react-router";
 import {DispatchActions} from "../DispatchActions";
 

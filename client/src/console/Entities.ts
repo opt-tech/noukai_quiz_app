@@ -1,5 +1,5 @@
 import {OrderedSet} from "immutable";
-import {IQuestion} from "../Models";
+import {IQuestion} from "../Entities";
 
 export interface ConsoleState {
     showedQuizs: OrderedSet<number>;

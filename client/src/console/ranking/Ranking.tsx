@@ -1,5 +1,5 @@
 import * as React from "react";
-import {ConsoleState, Score} from "../Models";
+import {ConsoleState, Score} from "../Entities";
 import {List} from "immutable";
 import {browserHistory} from "react-router";
 import {DispatchActions} from "../DispatchActions";

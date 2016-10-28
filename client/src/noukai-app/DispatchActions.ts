@@ -1,6 +1,6 @@
 import "isomorphic-fetch";
-import {Answer, ActionTypes} from "./Models";
-import {IQuestion} from "../Models";
+import {Answer, ActionTypes} from "./Entities";
+import {IQuestion} from "../Entities";
 import {failCB} from "../console/DispatchActions";
 
 export class DispatchActions {

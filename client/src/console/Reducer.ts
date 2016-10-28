@@ -1,4 +1,4 @@
-import {ActionTypes, ConsoleState, MyAction} from "./Models";
+import {ActionTypes, ConsoleState, MyAction} from "./Entities";
 import {OrderedSet} from "immutable";
 import objectAssign = require('object-assign');
 

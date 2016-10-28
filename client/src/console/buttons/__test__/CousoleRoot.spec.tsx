@@ -1,5 +1,5 @@
 import * as React from "react";
-import {ConsoleState} from "../../Models";
+import {ConsoleState} from "../../Entities";
 import * as TestUtils from "react-addons-test-utils";
 import {DispatchActions} from "../../DispatchActions";
 import Console from "../Console"

@@ -1,6 +1,6 @@
 import "isomorphic-fetch";
-import {ActionTypes, Score, Clicker} from "./Models";
-import {IQuestion} from "../Models";
+import {ActionTypes, Score, Clicker} from "./Entities";
+import {IQuestion} from "../Entities";
 
 export const failCB = (err: Error):void => {
   console.error(err);

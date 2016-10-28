@@ -1,4 +1,4 @@
-import {IQuestion} from "../Models";
+import {IQuestion} from "../Entities";
 
 export interface NoukaiState {
     questions: IQuestion[];

@@ -11,7 +11,7 @@ import NoukaiRoot from "./noukai-app/question/Root";
 import LoginRoot from "./noukai-app/login/Root";
 import {Provider} from "react-redux";
 import store from "./Store";
-import {Paths} from "./Models";
+import {Paths} from "./Entities";
 
 ReactDOM.render(
     <Provider store={store}>

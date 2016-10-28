@@ -1,5 +1,5 @@
 import * as React from "react";
-import {NoukaiState, Answer} from "../Models";
+import {NoukaiState, Answer} from "../Entities";
 import {Range} from "immutable";
 import {DispatchActions} from "../DispatchActions";
 import objectAssign = require('object-assign');
