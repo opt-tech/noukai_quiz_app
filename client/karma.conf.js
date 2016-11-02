@@ -4,11 +4,11 @@ const args = process.argv;
 args.splice(0, 4);
 
 //ポリフィルなどグローバルに入れておきたいものを置いておく。
-const polyfils = [
+const polyfills = [
     './node_modules/jquery/dist/jquery.min.js'
 ];
 
-var files = polyfils.concat(args);
+var files = polyfills.concat(args);
 
 module.exports = function(config) {
     config.set({
