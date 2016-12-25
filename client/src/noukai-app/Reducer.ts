@@ -10,7 +10,7 @@ export function noukai(state: NoukaiState = initialState, action: MyAction): Nou
         case ActionTypes.LOAD_QUESTIONS:
             return objectAssign({}, state, {questions: action.questions});
         case ActionTypes.SEND_MESSAGE:
-            console.log("sended");
+            console.log("sent");
             return state;
         case ActionTypes.RESET_ANSWERED_COUNT:
             return objectAssign({}, state, {answeredNum: 0});
