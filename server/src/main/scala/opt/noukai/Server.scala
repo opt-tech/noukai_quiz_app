@@ -65,12 +65,9 @@ trait NoukaiServer extends Directives {
       } ~
       // WebSocket
       path("quiz") {
-        (for {
-          dept: String <- parameter('dept)
-          name: String <- parameter('name)
-        } yield
+        parameters('dept, 'name) { (dept: String, name: String) =>
           handleWebSocketMessages(noukaiFlow(dept, name))
-        ).apply(identity)
+        }
       } ~
       // その他のリクエストは全てindex.htmlにリダイレクト
       path(Remaining) { _ =>
