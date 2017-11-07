@@ -59,9 +59,17 @@ trait NoukaiServer extends Directives {
             case Failure(e) => onError(e)
           }
         } ~
-          path("questions") {
-            getFromFile(questionsPath)
+        path("numByChoices" / Segment) { str =>
+          val n = try { str.toInt } catch { case e: Throwable => 0 }//IntNumberが0にマッチしないので文字列として扱っている
+          onComplete(noukai.getNumByChoices(n)) {
+            case Success(numByChoices) =>
+              HttpEntity(ContentTypes.`application/json`, s"""[ ${numByChoices.map(nba => s"""{ "choice": ${nba.choice}, "num": ${nba.num} }""").mkString(",")} ]""") |> toComplete
+            case Failure(e) => onError(e)
           }
+        } ~
+        path("questions") {
+          getFromFile(questionsPath)
+        }
       } ~
       // WebSocket
       path("quiz") {

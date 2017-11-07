@@ -13,3 +13,8 @@ export interface IQuestion {
     answer: number;
     description: string;
 }
+
+export interface NumByChoice {
+    choice: number;
+    num: number;
+}

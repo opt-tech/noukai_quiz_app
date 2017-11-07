@@ -1,7 +1,7 @@
 import {MyAction, ActionTypes, NoukaiState} from "./Entities";
 import objectAssign = require('object-assign');
 
-const initialState: NoukaiState = {questions: [], questionNum: 0, isBetweenQuiz: true, isCorrectLastQuiz: null, answeredNum: 0};
+const initialState: NoukaiState = {questions: [], questionNum: 0, isBetweenQuiz: true, isCorrectLastQuiz: null, answeredNum: 0, numByChoices: []};
 
 export function noukai(state: NoukaiState = initialState, action: MyAction): NoukaiState {
     console.log(action);
@@ -9,6 +9,8 @@ export function noukai(state: NoukaiState = initialState, action: MyAction): Nou
     switch (action.type) {
         case ActionTypes.LOAD_QUESTIONS:
             return objectAssign({}, state, {questions: action.questions});
+        case ActionTypes.LOAD_NUM_BY_CHOICES:
+            return objectAssign({}, state, {numByChoices: action.numByChoices});
         case ActionTypes.SEND_MESSAGE:
             console.log("sended");
             return state;

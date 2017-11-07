@@ -1,5 +1,7 @@
 package opt.noukai
 
+import java.time.Duration
+
 import akka.actor._
 import akka.pattern.ask
 import akka.stream.OverflowStrategy
@@ -27,6 +29,7 @@ trait NoukaiQuiz {
   def getRanks(max: Int): Future[Seq[Score]]
   def getClicker: Future[Clicker]
   def getUserSize: Future[Int]
+  def getNumByChoices(id: Int): Future[Seq[NumByChoice]]
 }
 
 object NoukaiQuiz {
@@ -34,6 +37,7 @@ object NoukaiQuiz {
   import scala.concurrent.duration.DurationInt
   implicit val timeout: akka.util.Timeout = 60 second // 可変にしたい
 
+  case class NumByChoice(choice: Int, num: Int)
   case class Score(rank: Int, name: String, correctNum: Int, time: Double)
   case class Clicker(num: Long, name: String)
 
@@ -80,7 +84,7 @@ object NoukaiQuiz {
         case _ => Unit
       }
 
-      private[this] def makeSummary = (quizMaster ? RequestAnswers).mapTo[Seq[AnswersInfo]]
+      private[this] def makeSummary: Future[Seq[AnswersInfo]] = (quizMaster ? RequestAnswers).mapTo[Seq[AnswersInfo]]
 
       override def getRanks(max: Int = 50): Future[Seq[Score]] = for {
         list <- makeSummary
@@ -118,6 +122,20 @@ object NoukaiQuiz {
           actionRanking.map { case (Identify(dept, name), num) => Clicker(num, s"$name（$dept）")}.head
 
       override def getUserSize: Future[Int] = (quizMaster ? RequestUserSize).mapTo[Int]
+
+      override def getNumByChoices(id: Int): Future[Seq[NumByChoice]] = for {
+        list <- makeSummary
+      } yield {
+        list.foldLeft(Seq.empty[NumByChoice]) {
+          case (summary: Seq[NumByChoice], AnswersInfo(_, ans: Map[Int, (Int, Duration)], _)) => {
+            val thisChoice: Option[Int] = ans.get(id).map(_._1)
+            (ans.get(id).map(p => Seq(p._1)).getOrElse(Seq()) ++ summary.map(_.choice)).toList.distinct.map { choice =>
+              val nowNums: Int = summary.find(_.choice == choice).map(_.num).getOrElse(0)
+              NumByChoice(choice, if (thisChoice.isDefined) nowNums + 1 else nowNums)
+            }
+          }
+        }
+      }
     }
   }
 }

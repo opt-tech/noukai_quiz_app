@@ -35,6 +35,8 @@ export default class AnswerComponent extends React.Component<Props, State> {
     };
 
     render() {
+        const noukaiState = this.props.state;
+
         function answerComponent(){
             if(this.state.isAnswered) return <p>回答しました。</p>;
             const disabledClass = this.state.answer === null ? "disabled" : "";
@@ -48,35 +50,45 @@ export default class AnswerComponent extends React.Component<Props, State> {
             );
         }
 
-        const question = this.props.state.questions[this.props.state.questionNum];
-        const radioButtons = Range(0, question.choices.length)
-            .map((i:number) => {
-                const key = i + 1; // 選択肢を1から始めるため
-                const activeClass = this.state.answer === key ? "active" : "";
-                const disabledClass = this.state.isAnswered ? "disabled" : "";
-                return <button key={key}
-                               type="button"
-                               className={"list-group-item " + activeClass + " " + disabledClass}
-                               onClick={() => this.editAnswer.bind(this)(key)}
-                               children={question.choices[i]} />
-            });
+        if(noukaiState.questions && noukaiState.questions[noukaiState.questionNum]){
+            const question = noukaiState.questions[this.props.state.questionNum];
+            const radioButtons = Range(0, question.choices.length)
+                .map((i:number) => {
+                    const key = i + 1; // 選択肢を1から始めるため
+                    const activeClass = this.state.answer === key ? "active" : "";
+                    const disabledClass = this.state.isAnswered ? "disabled" : "";
+                    return <button key={key}
+                                   type="button"
+                                   className={"list-group-item " + activeClass + " " + disabledClass}
+                                   onClick={() => this.editAnswer.bind(this)(key)}
+                                   children={question.choices[i]} />
+                });
+
+            return (
+                <div className="row">
+                    <div className="panel panel-default panel-question-title col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+                        <h4 className="text-center">質問</h4>
+                        <h3 className="text-center">{question.description}</h3>
+                    </div>
+                    <div className="panel panel-default panel-question col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+                        <div className="panel-body text-center">
+                            <div className="list-group">
+                                {radioButtons}
+                            </div>
+                            {answerComponent.bind(this)()}
+                            <p className="">現在の回答者数 {noukaiState.answeredNum}</p>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
 
         return (
             <div className="row">
-                <div className="panel panel-default panel-question-title col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-                    <h2 className="text-center">第{question.id}問</h2>
-                    <h3 className="text-center">{question.description}</h3>
-                </div>
-                <div className="panel panel-default panel-question col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-                    <div className="panel-body text-center">
-                        <div className="list-group">
-                            {radioButtons}
-                        </div>
-                        {answerComponent.bind(this)()}
-                        <p className="">現在の回答者数 {this.props.state.answeredNum}</p>
-                    </div>
+                <div className="panel panel-standby panel-default col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+                    <h4 className="text-center">少々お待ち下さい。</h4>
                 </div>
             </div>
-        )
+        );
     }
 }

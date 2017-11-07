@@ -1,6 +1,6 @@
 import "isomorphic-fetch";
 import {Answer, ActionTypes} from "./Entities";
-import {IQuestion} from "../Entities";
+import {IQuestion, NumByChoice} from "../Entities";
 import {failCB} from "../console/DispatchActions";
 
 export class DispatchActions {
@@ -63,5 +63,19 @@ export class DispatchActions {
 
   public resetAnsweredNum() {
     this.dispatch({ type: ActionTypes.RESET_ANSWERED_COUNT})
+  }
+
+  public loadNumByChoices(questionNum: number){
+    const successCB = (response: IResponse):Promise<void> => {
+      if(response.status === 200){
+        return response.json<NumByChoice[]>().then(json => this.dispatch({ type: ActionTypes.LOAD_NUM_BY_CHOICES, numByChoices: json}));
+      }
+      this.dispatch({ type: ActionTypes.HTTP_FAILURE, msg: 'quiz command is failed!'});
+      return
+    };
+
+    return fetch(`/api/numByChoices/${questionNum}`, {method: 'GET'})
+        .then(successCB)
+        .catch(failCB)
   }
 }

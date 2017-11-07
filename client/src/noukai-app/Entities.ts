@@ -1,4 +1,4 @@
-import {IQuestion} from "../Entities";
+import {IQuestion, NumByChoice} from "../Entities";
 
 export interface NoukaiState {
     questions: IQuestion[];
@@ -7,6 +7,7 @@ export interface NoukaiState {
     isBetweenQuiz: boolean;
     isCorrectLastQuiz?: boolean;
     answeredNum: number;
+    numByChoices: NumByChoice[];
 }
 
 export class Answer{
@@ -19,6 +20,7 @@ export interface MyAction {
     name?: string;
     ws?: WebSocket;
     questions?: IQuestion[];
+    numByChoices?: NumByChoice[];
 }
 
 export class ActionTypes{
@@ -28,5 +30,6 @@ export class ActionTypes{
     static WEBSOCKET_CONNECT_SUCCESS = 'WEBSOCKET_CONNECT_SUCCESS';
     static RESET_ANSWERED_COUNT = "RESET_ANSWERED_COUNT";
     static LOAD_QUESTIONS = 'LOAD_QUESTIONS';
+    static LOAD_NUM_BY_CHOICES = 'LOAD_NUM_BY_CHOICES';
     static HTTP_FAILURE = 'HTTP_FAILURE';
 }

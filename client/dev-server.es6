@@ -40,7 +40,7 @@ wss.on('connection', (ws) => {
 
   ws.on('message', message => {
     console.log("user: " + user + ', message: ', message);
-    if(JSON.parse(message).answer !== undefined){
+    if(JSON.parse(message).choice !== undefined){
       const numObj = {answeredNum: ++ answeredNum};
       broadcast(JSON.stringify(numObj))
     }

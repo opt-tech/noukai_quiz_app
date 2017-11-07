@@ -37,23 +37,13 @@ export default class QuestionRoot extends React.Component<Props, State> {
           ? <StandbyComponent state={this.props.noukaiState} actions={this.props.actions} />
           : <AnswerComponent state={this.props.noukaiState} actions={this.props.actions} />;
 
-        const clickableSay = this.state.isAction ? " < にゃ〜ん" : "";
         return (
             <div className="question container">
                 {mainContents}
                 <footer className="footer">
                     <div className="footer-content">
                          <div className="text-center">
-                            <img
-                                alt="daisuke"
-                                onClick={this.doAction.bind(this)}
-                                className="img-circle"
-                                src="/public/maru.png" />
-                            <span style={{verticalAlign: "middle"}}>{clickableSay}</span>
-                            <ReactSound
-                                url="/public/sound.mp3"
-                                playStatus={this.state.isAction ? ReactSound.status.PLAYING : ReactSound.status.STOPPED}
-                                onFinishedPlaying={() => this.setState(objectAssign({}, this.state, {isAction: false}))} />
+                            <span style={{verticalAlign: "middle"}}>勝手に後夜祭！ 2017</span>
                         </div>
                     </div>
                 </footer>
